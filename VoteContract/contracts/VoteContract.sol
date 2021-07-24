@@ -13,6 +13,10 @@ contract VoteContract is Ownable {
     // their voting status. Bool is true if the voter has voted 
     mapping (address => bool) voterRoll;
 
+    constructor(string[] memory _candidates) {
+        candidates = _candidates;
+    }
+
     function _compareStrings(string memory a, string memory b) internal pure returns (bool) {
         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
     }
