@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract VoteContract is Ownable {
     // Candidate names are stored as strings
 
-    string[] candidates;
+    string[] public candidates;
     mapping (string => uint) candidateVotes;
     // A voter roll to keep track of registered voters, and also to track
     // their voting status. Bool is true if the voter has voted 
@@ -19,10 +19,6 @@ contract VoteContract is Ownable {
 
     function _compareStrings(string memory a, string memory b) internal pure returns (bool) {
         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
-    }
-
-    function viewCandidates() external view returns (string[] memory) {
-        return candidates;
     }
 
     function setCandidates(string[] memory _newCandidateList) external onlyOwner {
