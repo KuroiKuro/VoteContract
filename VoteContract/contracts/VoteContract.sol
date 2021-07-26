@@ -44,12 +44,12 @@ contract VoteContract is Ownable {
                 break;
             }
         }
-        require(exists);
+        require(exists, "Candidate does not exist");
         _;
     }
 
     modifier hasNotVoted() {
-        require(voterRoll[msg.sender] == false);
+        require(voterRoll[msg.sender] == false, "Voter has voted before");
         _;
     }
 
