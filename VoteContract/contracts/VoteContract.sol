@@ -3,15 +3,13 @@ pragma solidity ^0.8.4;
 
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./VoterRoll.sol";
 
-contract VoteContract is Ownable {
+contract VoteContract is VoterRoll {
     // Candidate names are stored as strings
 
     string[] candidates;
     mapping (string => uint256) candidateVotes;
-    // A voter roll to keep track of registered voters, and also to track
-    // their voting status. Bool is true if the voter has voted 
-    mapping (address => bool) voterRoll;
 
     constructor(string[] memory _candidates) {
         candidates = _candidates;
@@ -30,12 +28,6 @@ contract VoteContract is Ownable {
         }
     }
 
-    function enrollVoters(address[] memory _voterAddresses) external onlyOwner {
-        for (uint256 i = 0; i < _voterAddresses.length; i++) {
-            voterRoll[_voterAddresses[i]] = false;
-        }
-    }
-
     modifier candidateExists(string memory _candidate) {
         bool exists = false;
         for (uint256 i = 0; i < candidates.length; i++) {
@@ -48,22 +40,9 @@ contract VoteContract is Ownable {
         _;
     }
 
-    modifier hasNotVoted() {
-        require(voterRoll[msg.sender] == false, "Voter has voted before");
-        _;
-    }
-
-    function _mark_voter_voted(address _voter) internal {
-        voterRoll[_voter] = true;
-    }
-
     function vote(string memory candidate) external candidateExists(candidate) hasNotVoted {
         candidateVotes[candidate]++;
         _mark_voter_voted(msg.sender);
-    }
-
-    function checkVoteStatus(address _voterAddress) external view returns (bool) {
-        return voterRoll[_voterAddress];
     }
 
     function viewCandidates() external view returns (string[] memory) {
