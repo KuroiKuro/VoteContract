@@ -35,7 +35,7 @@ contract VoterRoll is Ownable {
     }
 
     function _mark_voter_voted(address _voter) internal {
-        voterVoteStatus[_voter] = true;
+        voterVoteStatus[_voter] = false;
     }
 
     function checkVotingStatus(address _voterAddress) external view returns (bool) {
