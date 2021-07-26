@@ -61,4 +61,8 @@ contract VoteContract is Ownable {
         candidateVotes[candidate]++;
         _mark_voter_voted(msg.sender);
     }
+
+    function checkVoteStatus(address _voterAddress) external view returns (bool) {
+        return voterRoll[_voterAddress];
+    }
 }
