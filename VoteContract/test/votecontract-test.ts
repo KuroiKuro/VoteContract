@@ -57,10 +57,26 @@ describe("VoteContract", () => {
         });
 
         it("Vote count for candidate should increase by 1 after voting", async () => {
-            const candidate = "Aramis Stilton"
+            const candidate = "Aramis Stilton";
             const currentVoteCount = await VoteContract.viewCandidateVotes(candidate);
             await VoteContract.connect(addr1).vote(candidate);
             expect(await VoteContract.viewCandidateVotes(candidate)).to.equal(currentVoteCount + 1);
+        });
+
+        it("Voting for a candidate should not affect vote counts of others", async () => {
+            const candidate = "Aramis Stilton";
+            await VoteContract.connect(addr1).vote(candidate);
+            const otherCandidates = [...CANDIDATES];
+            otherCandidates.shift();
+            for (let otherCandidate in otherCandidates) {
+                expect(await VoteContract.viewCandidateVotes(otherCandidate)).to.equal(0);
+            }
+        })
+
+        it("Voters should not be able to vote more than once", async () => {
+            const candidate = "Artorias";
+            await VoteContract.connect(addr1).vote(candidate);
+            await expect(VoteContract.connect(addr1).vote(candidate)).to.be.reverted;
         });
     });
 });
