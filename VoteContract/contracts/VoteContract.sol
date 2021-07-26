@@ -40,7 +40,7 @@ contract VoteContract is VoterRoll {
         _;
     }
 
-    function vote(string memory candidate) external candidateExists(candidate) hasNotVoted {
+    function vote(string memory candidate) external candidateExists(candidate) voterIsEnrolled hasNotVoted {
         candidateVotes[candidate]++;
         _mark_voter_voted(msg.sender);
     }
