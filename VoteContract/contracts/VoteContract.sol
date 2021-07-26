@@ -8,7 +8,7 @@ contract VoteContract is Ownable {
     // Candidate names are stored as strings
 
     string[] public candidates;
-    mapping (string => uint) candidateVotes;
+    mapping (string => uint) public candidateVotes;
     // A voter roll to keep track of registered voters, and also to track
     // their voting status. Bool is true if the voter has voted 
     mapping (address => bool) voterRoll;
