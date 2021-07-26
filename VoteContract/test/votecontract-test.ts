@@ -20,6 +20,7 @@ describe("VoteContract", () => {
         VoteContractFactory = await ethers.getContractFactory("VoteContract");
         VoteContract = await VoteContractFactory.deploy(CANDIDATES);
         [owner, addr1, addr2, addr3, ...addrs] = await ethers.getSigners();
+        VoteContract.enrollVoters([addr1.address, addr2.address, addr3.address]);
     });
 
     describe("Deployment", () => {
@@ -50,10 +51,10 @@ describe("VoteContract", () => {
     });
 
     describe("Voting Tests", () => {
-        it("Voters in voterRoll should be mapped to false", async () => {
-            expect(await VoteContract.checkVoteStatus(addr1.address)).to.be.false;
-            expect(await VoteContract.checkVoteStatus(addr2.address)).to.be.false;
-            expect(await VoteContract.checkVoteStatus(addr3.address)).to.be.false;
+        it("Voter voting status should be mapped to true", async () => {
+            expect(await VoteContract.checkVotingStatus(addr1.address)).to.be.true;
+            expect(await VoteContract.checkVotingStatus(addr2.address)).to.be.true;
+            expect(await VoteContract.checkVotingStatus(addr3.address)).to.be.true;
         });
 
         it("Vote count for candidate should increase by 1 after voting", async () => {
