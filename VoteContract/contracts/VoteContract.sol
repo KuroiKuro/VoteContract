@@ -8,7 +8,7 @@ contract VoteContract is Ownable {
     // Candidate names are stored as strings
 
     string[] candidates;
-    mapping (string => uint) candidateVotes;
+    mapping (string => uint256) candidateVotes;
     // A voter roll to keep track of registered voters, and also to track
     // their voting status. Bool is true if the voter has voted 
     mapping (address => bool) voterRoll;
@@ -23,7 +23,7 @@ contract VoteContract is Ownable {
 
     function setCandidates(string[] memory _newCandidateList) external onlyOwner {
         candidates = _newCandidateList;
-        for (uint i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             // Initialize all votes to 0
             string memory candidate = candidates[i];
             candidateVotes[candidate] = 0;
@@ -31,14 +31,14 @@ contract VoteContract is Ownable {
     }
 
     function enrollVoters(address[] memory _voterAddresses) external onlyOwner {
-        for (uint i = 0; i < _voterAddresses.length; i++) {
+        for (uint256 i = 0; i < _voterAddresses.length; i++) {
             voterRoll[_voterAddresses[i]] = false;
         }
     }
 
     modifier candidateExists(string memory _candidate) {
         bool exists = false;
-        for (uint i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             if (_compareStrings(_candidate, candidates[i])) {
                 exists = true;
                 break;
@@ -70,7 +70,7 @@ contract VoteContract is Ownable {
         return candidates;
     }
 
-    function viewCandidateVotes(string memory _candidate) external view returns (uint) {
+    function viewCandidateVotes(string memory _candidate) external view returns (uint256) {
         return candidateVotes[_candidate];
     }
 }
