@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract VoteContract is Ownable {
     // Candidate names are stored as strings
 
-    string[] public candidates;
-    mapping (string => uint) public candidateVotes;
+    string[] candidates;
+    mapping (string => uint) candidateVotes;
     // A voter roll to keep track of registered voters, and also to track
     // their voting status. Bool is true if the voter has voted 
     mapping (address => bool) voterRoll;
@@ -64,5 +64,13 @@ contract VoteContract is Ownable {
 
     function checkVoteStatus(address _voterAddress) external view returns (bool) {
         return voterRoll[_voterAddress];
+    }
+
+    function viewCandidates() external view returns (string[] memory) {
+        return candidates;
+    }
+
+    function viewCandidateVotes(string memory _candidate) external view returns (uint) {
+        return candidateVotes[_candidate];
     }
 }
