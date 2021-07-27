@@ -20,7 +20,7 @@ describe("VoteContract", () => {
         VoteContractFactory = await ethers.getContractFactory("VoteContract");
         VoteContract = await VoteContractFactory.deploy(CANDIDATES);
         [owner, addr1, addr2, addr3, ...addrs] = await ethers.getSigners();
-        VoteContract.enrollVoters([addr1.address, addr2.address, addr3.address]);
+        VoteContract.enrollVoters([addr1.address, addr2.address]);
     });
 
     describe("Deployment", () => {
@@ -54,7 +54,6 @@ describe("VoteContract", () => {
         it("Voter voting status should be mapped to true", async () => {
             expect(await VoteContract.checkVotingStatus(addr1.address)).to.be.true;
             expect(await VoteContract.checkVotingStatus(addr2.address)).to.be.true;
-            expect(await VoteContract.checkVotingStatus(addr3.address)).to.be.true;
         });
 
         it("Vote count for candidate should increase by 1 after voting", async () => {
@@ -77,6 +76,16 @@ describe("VoteContract", () => {
         it("Voters should not be able to vote more than once", async () => {
             const candidate = "Artorias";
             await VoteContract.connect(addr1).vote(candidate);
+            await expect(VoteContract.connect(addr1).vote(candidate)).to.be.reverted;
+        });
+
+        it("Unregistered voters should not be able to vote", async () => {
+            const candidate = "Omar Ashour";
+            await expect(VoteContract.connect(addr3).vote(candidate)).to.be.reverted;
+        });
+
+        it("Voters should not be able to vote for non-existent candidate", async () => {
+            const candidate = "adjwaidwa";
             await expect(VoteContract.connect(addr1).vote(candidate)).to.be.reverted;
         });
     });
