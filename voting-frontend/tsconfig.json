@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
+  "baseUrl": "src",
+  "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -22,6 +23,5 @@
   },
   "include": [
     "src"
-  ],
-  "baseUrl": "src"
+  ]
 }
