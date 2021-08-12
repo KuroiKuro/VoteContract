@@ -13,3 +13,11 @@ const main = async () => {
     // the frontend can access using process.env
     console.log("VoteContract deployed to:", VoteContract.address);
 }
+
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
