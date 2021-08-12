@@ -4,6 +4,8 @@
   "description": "A smart contract voting system",
   "main": "index.js",
   "scripts": {
+    "start-chain": "hardhat node",
+    "deploy": "hardhat run scripts/deploy-votecontract.ts --network localhost",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "KuroiKuro",
