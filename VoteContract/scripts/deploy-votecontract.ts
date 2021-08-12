@@ -1,4 +1,5 @@
 import hre from 'hardhat';
+import fs from 'fs'
 
 const CANDIDATES = ["Ornstein", "Smough", "Gundyr"];
 
@@ -11,7 +12,9 @@ const main = async () => {
 
     // Would be cool if I can set an environment variable here that
     // the frontend can access using process.env
-    console.log("VoteContract deployed to:", VoteContract.address);
+    const contractAddress = VoteContract.address;
+    console.log("VoteContract deployed to:", contractAddress);
+    fs.writeFileSync("./contract-address.txt", contractAddress);
 }
 
 
