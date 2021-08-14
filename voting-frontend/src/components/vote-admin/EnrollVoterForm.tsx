@@ -15,6 +15,7 @@ const EnrollVoterForm: React.FC = () => {
                     onChange={event => {
                         const newAddresses = [...addresses];
                         newAddresses[index] = event.target.value;
+                        setAddresses(newAddresses);
                     }}
                 />
             </div>
@@ -30,8 +31,9 @@ const EnrollVoterForm: React.FC = () => {
             </button>
             <button
                 onClick={() => setAddresses(addresses => {
-                    addresses.pop();
-                    return addresses;
+                    const newAddresses = [...addresses];
+                    newAddresses.pop();
+                    return newAddresses;
                 })}
                 disabled={addresses.length <= 1}
             >
