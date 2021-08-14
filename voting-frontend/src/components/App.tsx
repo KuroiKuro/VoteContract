@@ -1,7 +1,13 @@
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { VotingFrontendSwitch } from 'routing/VotingFrontendSwitch'
 
 const App: React.FC = () => {
-    return <h1>Hello World</h1>
+    return (
+        <Router>
+            <VotingFrontendSwitch />
+        </Router>
+    );
 }
 
 export { App };
