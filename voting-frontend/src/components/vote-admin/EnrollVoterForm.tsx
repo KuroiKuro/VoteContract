@@ -2,14 +2,44 @@ import { useState } from 'react'
 
 
 const EnrollVoterForm: React.FC = () => {
-    const [address, setAddress] = useState("");
+    const [addresses, setAddresses] = useState<string[]>([""]);
+
+    // Create array of address input elements for user to input multiple
+    // addresses
+    const addressElems = addresses.map((address, index) => {
+        return (
+            <>
+                <label>Voter Address {index + 1}</label>
+                <input
+                    value={addresses[index]}
+                    onChange={event => {
+                        const newAddresses = [...addresses];
+                        newAddresses[index] = event.target.value;
+                    }}
+                />
+            </>
+        );
+    })
 
     return (
         <div>
+            <button
+                onClick={() => setAddresses(addresses => [...addresses, ""])}
+            >
+                Add Address
+            </button>
+            <button
+                onClick={() => setAddresses(addresses => {
+                    addresses.pop();
+                    return addresses;
+                })}
+                disabled={addresses.length <= 1}
+            >
+                Remove address
+            </button>
             <form>
-                <label>Voter Address</label>
-                <input value={address} onChange={(event) => setAddress(event.target.value)} />
-                <button>Submit</button>
+            {addressElems}
+            <button>Submit</button>
             </form>
         </div>
     )
