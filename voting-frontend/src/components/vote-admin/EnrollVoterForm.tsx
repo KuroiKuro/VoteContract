@@ -8,7 +8,7 @@ const EnrollVoterForm: React.FC = () => {
     // addresses
     const addressElems = addresses.map((address, index) => {
         return (
-            <>
+            <div>
                 <label>Voter Address {index + 1}</label>
                 <input
                     value={addresses[index]}
@@ -17,7 +17,7 @@ const EnrollVoterForm: React.FC = () => {
                         newAddresses[index] = event.target.value;
                     }}
                 />
-            </>
+            </div>
         );
     })
 
