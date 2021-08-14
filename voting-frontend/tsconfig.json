@@ -1,10 +1,8 @@
 {
+  "extends": "./paths.json",
   "compilerOptions": {
-  "baseUrl": "src",
-  "paths": {
-    "@contracts/*": ["../../VoteContract/artifacts/contracts/*"]
-  },
-  "target": "es6",
+    "baseUrl": "src",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
