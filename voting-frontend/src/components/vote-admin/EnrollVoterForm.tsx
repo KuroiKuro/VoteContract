@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { enrollVoters } from 'lib/ethers-lib'
 
 
 const EnrollVoterForm: React.FC = () => {
@@ -20,7 +21,7 @@ const EnrollVoterForm: React.FC = () => {
                 />
             </div>
         );
-    })
+    });
 
     return (
         <div>
@@ -41,10 +42,22 @@ const EnrollVoterForm: React.FC = () => {
             </button>
             <form>
             {addressElems}
-            <button>Submit</button>
+            <button
+                onClick={() => {
+                    try {
+                        enrollVoters(addresses);
+                    } catch (error) {
+                        // TODO: implement a custom error class for missing
+                        // metamask and add handling for it here
+                        console.log(error);
+                    }
+                }}
+            >
+                Submit
+            </button>
             </form>
         </div>
-    )
+    );
 }
 
 export { EnrollVoterForm };
