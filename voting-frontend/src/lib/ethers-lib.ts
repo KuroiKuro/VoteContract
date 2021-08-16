@@ -10,14 +10,7 @@ declare global {
     }
 }
 
-export const getContractAddress = (addressFilePath: string) => {
-    // Read contract address that is saved inside addressFile
-    return fs.readFileSync(addressFilePath, "utf8");
-}
-
-
-export const CONTRACT_ADDRESS_FILE_PATH = "../../../VoteContract/contract-address.txt";
-export const CONTRACT_ADDRESS = getContractAddress(CONTRACT_ADDRESS_FILE_PATH);
+export const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 
 export const getContractObject = (): ethers.Contract => {
