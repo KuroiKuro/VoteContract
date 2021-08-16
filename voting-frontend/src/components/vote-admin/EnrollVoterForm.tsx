@@ -44,13 +44,11 @@ const EnrollVoterForm: React.FC = () => {
             {addressElems}
             <button
                 onClick={() => {
-                    try {
-                        enrollVoters(addresses);
-                    } catch (error) {
-                        // TODO: implement a custom error class for missing
-                        // metamask and add handling for it here
-                        console.log(error);
-                    }
+                    // TODO: implement a custom error class for missing
+                    // metamask and add handling for it here
+                    enrollVoters(addresses)
+                        .then(() => console.log("Addresses enrolled"))
+                        .catch(err => console.log(err));
                 }}
             >
                 Submit
