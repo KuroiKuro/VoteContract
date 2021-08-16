@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import fs from 'fs';
-import VoteContract from '@contracts/VoteContract.sol/VoteContract.json';
+import VoteContract from 'contracts/VoteContract.json';
 
 // Declare global to extend Window object globally. We want to tell typescript
 // that window.ethereum exists, since metamask injects it
