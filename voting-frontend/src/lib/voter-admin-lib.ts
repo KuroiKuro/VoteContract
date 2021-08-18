@@ -9,6 +9,7 @@ export const enrollVoters = async (voterAddresses: string[]) => {
         await transaction.wait();
     } catch (err) {
         console.log(`Error when enrolling voters: ${err}`);
+        throw err;
     }
 }
 
