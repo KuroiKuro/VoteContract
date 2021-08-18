@@ -7,7 +7,7 @@ const EnrollVoterForm: React.FC = () => {
 
     // Create array of address input elements for user to input multiple
     // addresses
-    const addressElems = addresses.map((address, index) => {
+    const addressElems = addresses.map((_address, index) => {
         return (
             <div key={index}>
                 <label>Voter Address {index + 1}</label>
