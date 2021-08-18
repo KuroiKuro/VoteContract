@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { enrollVoters } from 'lib/ethers-lib'
+import { enrollVoters } from 'lib/voter-admin-lib'
 
 
 const EnrollVoterForm: React.FC = () => {

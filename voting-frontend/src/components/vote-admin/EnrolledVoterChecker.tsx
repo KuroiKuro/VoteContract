@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { checkVoterEnrollment } from 'lib/ethers-lib'
+import { checkVoterEnrollment } from 'lib/voter-admin-lib'
 
 export const EnrolledVoterChecker: React.FC = () => {
     const [address, setAddress] = useState("");
