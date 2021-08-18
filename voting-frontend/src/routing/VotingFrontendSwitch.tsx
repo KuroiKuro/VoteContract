@@ -11,7 +11,7 @@ export const VotingFrontendSwitch: React.FC = () => {
             <Route path="/enroll" exact>
                 <EnrollVoterForm />
             </Route>
-            <Route path="/erollment-check" exact>
+            <Route path="/enrollmentCheck" exact>
                 <EnrolledVoterChecker />
             </Route>
         </Switch>
