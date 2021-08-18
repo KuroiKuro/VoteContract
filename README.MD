@@ -25,10 +25,11 @@ cd voting-frontend
 npm start
 ```
 
-# Voting Smart Contract
+# Components
+## Voting Smart Contract
 The smart contracts consist of 2 contracts. VoterRoll.sol contains methods dedicated to voter roll management, such as enrolling wallet addresses of voters to allow them to vote. VoteContract.sol handles the tracking of the actual votes for each candidate.
 
-# Voting Frontend
+## Voting Frontend
 The voting frontend is a react application performs 2 functions:
 1) Allow admins to interact with the administrative functions of the smart contract
 2) Allow registered voters to vote
