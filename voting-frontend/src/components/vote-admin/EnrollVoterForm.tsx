@@ -43,8 +43,8 @@ const EnrollVoterForm: React.FC = () => {
             <form>
             {addressElems}
             <button
+                type="button"
                 onClick={(event) => {
-                    event.preventDefault();
                     // TODO: implement a custom error class for missing
                     // metamask and add handling for it here
                     enrollVoters(addresses)

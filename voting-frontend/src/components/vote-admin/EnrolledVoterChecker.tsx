@@ -16,10 +16,8 @@ export const EnrolledVoterChecker: React.FC = () => {
             />
             <p>{message}</p>
             <button
+                type="button"
                 onClick={(event) => {
-                    // Prevent the default button click event, which will
-                    // submit the form and cause a page refresh
-                    event.preventDefault();
                     checkVoterEnrollment(address)
                         .then(validity => setValid(validity))
                         .catch(error => console.log(error));
