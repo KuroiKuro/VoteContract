@@ -6,6 +6,11 @@ export const getCandidates = async (): Promise<string[]> => {
     try {
         const candidates: string[] = await contract.viewCandidates();
         return candidates
+    } catch (error) {
+        console.log(`Error when retrieving candidate list: ${error}`);
+        throw error;
+    }
+}
     } catch (err) {
         console.log(`Error when retrieving candidate list: ${err}`);
         throw err;
