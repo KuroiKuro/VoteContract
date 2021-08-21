@@ -11,8 +11,14 @@ export const getCandidates = async (): Promise<string[]> => {
         throw error;
     }
 }
-    } catch (err) {
-        console.log(`Error when retrieving candidate list: ${err}`);
-        throw err;
+
+export const voteCandidate = async (candidate: string): Promise<boolean> => {
+    const contract = getContractObject();
+    try {
+        await contract.vote(candidate);
+        return true;
+    } catch (error) {
+        console.log(`Error when voting for candidate ${candidate}`);
+        throw error;
     }
 }
